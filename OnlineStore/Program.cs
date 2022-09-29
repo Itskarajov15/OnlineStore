@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineStore.Data;
+using OnlineStore.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
