@@ -1,5 +1,8 @@
+using CloudinaryDotNet;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OnlineStore.Core.Contracts;
+using OnlineStore.Core.Services;
 using OnlineStore.Data;
 using OnlineStore.Infrastructure.Data;
 using OnlineStore.Infrastructure.Data.Identity;
@@ -15,6 +18,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton(new Cloudinary(builder.Configuration["CloudinaryString"]));
+
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+builder.Services.AddScoped<ICommonService, CommonService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 

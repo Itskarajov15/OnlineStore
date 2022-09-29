@@ -6,15 +6,16 @@ namespace OnlineStore.Infrastructure.Data.Models
 {
     public class Product
     {
+        public Product()
+        {
+            this.ProductImages = new List<ProductImages>();
+        }
+
         public int Id { get; set; }
 
         [Required]
         [StringLength(60)]
         public string Title { get; set; } = null!;
-
-        [Required]
-        [StringLength(1000)]
-        public string Description { get; set; } = null!;
 
         [Required]
         [StringLength(1000)]
@@ -34,5 +35,7 @@ namespace OnlineStore.Infrastructure.Data.Models
         public Brand Brand { get; set; } = null!;
 
         public int BrandId { get; set; }
+
+        public ICollection<ProductImages> ProductImages { get; set; } = null!;
     }
 }
