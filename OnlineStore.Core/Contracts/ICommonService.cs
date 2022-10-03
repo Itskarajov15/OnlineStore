@@ -7,5 +7,7 @@ namespace OnlineStore.Core.Contracts
         Task<List<CategoryViewModel>> GetCategories();
 
         Task<List<BrandViewModel>> GetBrands();
+
+        Task<List<CategoryCardViewModel>> GetAllCategories();
     }
 }

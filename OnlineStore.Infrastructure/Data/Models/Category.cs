@@ -15,6 +15,9 @@ namespace OnlineStore.Infrastructure.Data.Models
         [StringLength(50)]
         public string Name { get; set; } = null!;
 
+        [Required]
+        public string ImageUrl { get; set; } = null!;
+
         public ICollection<Product> Products { get; set; }
     }
 }

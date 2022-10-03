@@ -15,7 +15,7 @@
                         @foreach (var product in Model)
                         {
                             <div class="single-slider"
-                             style="background-image: url(@product.ImageUrl); 
+                             style="background-image: url(@product.ImageUrl);
                                     background-size: contain;">
                                 <div class="content">
                                     <h2>
@@ -36,6 +36,34 @@
                     <!-- End Hero Slider -->
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured-categories section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Featured Categories</h2>
+                    <p>
+                        There are many variations of passages of Lorem Ipsum available, but the majority have
+                        suffered alteration in some form.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var category in ViewBag.Categories)
+            {
+                <div class="card col me-3" style="width: 18rem;">
+                    <img src="@category.ImageUrl" class="card-img-top" alt="Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@category.Name</h5>
+                    </div>
+                    <button asp-controller="Product" asp-action="All" asp-route-id="@category.Id" type="button" class="btn btn-primary">View Mode</button>
+                </div>
+            }
         </div>
     </div>
 </section>

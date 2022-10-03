@@ -14,6 +14,20 @@ namespace OnlineStore.Core.Services
             this.context = context;
         }
 
+        public async Task<List<CategoryCardViewModel>> GetAllCategories()
+        {
+            var categories = await this.context.Categories
+                .Select(c => new CategoryCardViewModel
+                {
+                    Id = c.Id,
+                    ImageUrl = c.ImageUrl,
+                    Name = c.Name
+                })
+                .ToListAsync();
+
+            return categories;
+        }
+
         public async Task<List<BrandViewModel>> GetBrands()
             => await this.context
                    .Brands
