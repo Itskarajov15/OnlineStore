@@ -44,9 +44,9 @@
             <div class="form-group">
                 <label asp-for="@Model.CategoryId"></label>
                 <select asp-for="@Model.CategoryId" class="form-control">
-                    @foreach (var city in Model.Categories)
+                    @foreach (var category in Model.Categories)
                     {
-                        <option value="@city.Id">@city.Name</option>
+                        <option value="@category.Id">@category.Name</option>
                     }
                 </select>
             </div>

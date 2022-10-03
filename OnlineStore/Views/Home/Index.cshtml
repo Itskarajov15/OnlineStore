@@ -1,35 +1,41 @@
-﻿@{
+﻿@model List<ProductCarouselViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12 col-12 custom-padding-right">
-            <div class="slider-head">
-                <!-- Start Hero Slider -->
-                <div class="hero-slider">
-                    <!-- Start Single Slider -->
-                    <div class="single-slider"
-                         style="background-image: url(assets/images/hero/slider-bg1.jpg);">
-                        <div class="content">
-                            <h2>
-                                <span>No restocking fee ($35 savings)</span>
-                                M75 Sport Watch
-                            </h2>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua.
-                            </p>
-                            <h3><span>Now Only</span> $320.99</h3>
-                            <div class="button">
-                                <a href="product-grids.html" class="btn">Shop Now</a>
+<section class="hero-area">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8 col-12 custom-padding-right">
+                <div class="slider-head">
+                    <!-- Start Hero Slider -->
+                    <div class="hero-slider">
+                        <!-- Start Single Slider -->
+                        @foreach (var product in Model)
+                        {
+                            <div class="single-slider"
+                             style="background-image: url(@product.ImageUrl); 
+                                    background-size: contain;">
+                                <div class="content">
+                                    <h2>
+                                        @product.Title
+                                    </h2>
+                                    <p>
+                                        @product.Description
+                                    </p>
+                                    <h3>@product.Price лв.</h3>
+                                    <div class="button">
+                                        <a href="product-grids.html" class="btn">Shop Now</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        }
+                        <!-- End Single Slider -->
                     </div>
-                    <!-- End Single Slider -->
+                    <!-- End Hero Slider -->
                 </div>
-                <!-- End Hero Slider -->
             </div>
         </div>
     </div>
-</div>
+</section>

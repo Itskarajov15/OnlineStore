@@ -16,7 +16,7 @@ namespace OnlineStore.Core.Models
         public string Specifications { get; set; } = null!;
 
         [Required]
-        [StringLength(200, MinimumLength = 10, ErrorMessage = "{0} must be between {2} and {1} symbols.")]
+        [StringLength(100, MinimumLength = 10, ErrorMessage = "{0} must be between {2} and {1} symbols.")]
         public string Description { get; set; } = null!;
 
         [Column(TypeName = "decimal(18,2)")]
