@@ -21,6 +21,10 @@ namespace OnlineStore.Infrastructure.Data.Models
         [StringLength(1000)]
         public string Specifications { get; set; } = null!;
 
+        [Required]
+        [StringLength(100)]
+        public string Description { get; set; } = null!;
+
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 

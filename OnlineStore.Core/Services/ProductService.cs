@@ -28,7 +28,8 @@ namespace OnlineStore.Core.Services
                 Quantity = model.Quantity,
                 Specifications = model.Specifications,
                 BrandId = model.BrandId,
-                CategoryId = model.CategoryId
+                CategoryId = model.CategoryId,
+                Description = model.Description
             };
 
             foreach (var image in model.ProductImages)
@@ -52,5 +53,7 @@ namespace OnlineStore.Core.Services
 
             return isAdded;
         }
+
+        //public async Task<ProductViewModel>
     }
 }

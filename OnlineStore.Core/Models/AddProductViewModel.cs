@@ -8,12 +8,16 @@ namespace OnlineStore.Core.Models
     public class AddProductViewModel
     {
         [Required]
-        [StringLength(60)]
+        [StringLength(60, MinimumLength = 5, ErrorMessage = "{0} must be between {2} and {1} symbols.")]
         public string Title { get; set; } = null!;
 
         [Required]
-        [StringLength(1000)]
+        [StringLength(1000, MinimumLength = 10, ErrorMessage = "{0} must be between {2} and {1} symbols.")]
         public string Specifications { get; set; } = null!;
+
+        [Required]
+        [StringLength(200, MinimumLength = 10, ErrorMessage = "{0} must be between {2} and {1} symbols.")]
+        public string Description { get; set; } = null!;
 
         [Column(TypeName = "decimal(18,2)")]
         [Range(typeof(decimal), "0.00", "79228162514264337593543950335")]
