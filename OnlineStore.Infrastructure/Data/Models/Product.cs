@@ -9,6 +9,7 @@ namespace OnlineStore.Infrastructure.Data.Models
         public Product()
         {
             this.ProductImages = new List<ProductImages>();
+            this.Reviews = new List<Review>();
         }
 
         public int Id { get; set; }
@@ -41,5 +42,7 @@ namespace OnlineStore.Infrastructure.Data.Models
         public int BrandId { get; set; }
 
         public ICollection<ProductImages> ProductImages { get; set; } = null!;
+
+        public ICollection<Review> Reviews { get; set; } = null!;
     }
 }

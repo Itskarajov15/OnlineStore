@@ -7,5 +7,7 @@ namespace OnlineStore.Core.Contracts
         Task<bool> Add(AddProductViewModel model);
 
         Task<List<ProductCarouselViewModel>> GetCarouselProducts();
+
+        Task<List<ProductCardViewModel>> GetAllProducts();
     }
 }

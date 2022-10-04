@@ -42,5 +42,12 @@ namespace OnlineStore.Controllers
 
             return RedirectToAction("All"); ///////////////////////////////Change it when ready
         }
+
+        public async Task<IActionResult> All()
+        {
+            var products = await this.productService.GetAllProducts();
+
+            return View(products);
+        }
     }
 }

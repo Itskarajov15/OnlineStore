@@ -58,6 +58,24 @@ namespace OnlineStore.Core.Services
             return isAdded;
         }
 
+        public async Task<List<ProductCardViewModel>> GetAllProducts()
+        {
+            var products = await this.context.Products
+                .Where(p => p.IsActive == true)
+                .Select(p => new ProductCardViewModel
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    ImageUrl = p.ProductImages.Select(pi => pi.Url).FirstOrDefault(),
+                    Rating = p.Reviews.Select(r => r.Rating).Average(),
+                    Price = p.Price,
+                    Category = p.Category.Name
+                })
+                .ToListAsync();
+
+            return products;
+        }
+
         public async Task<List<ProductCarouselViewModel>> GetCarouselProducts()
         {
             var products = await this.context.Products
