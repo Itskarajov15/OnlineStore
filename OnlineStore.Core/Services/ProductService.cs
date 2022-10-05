@@ -58,20 +58,49 @@ namespace OnlineStore.Core.Services
             return isAdded;
         }
 
-        public async Task<List<ProductCardViewModel>> GetAllProducts()
+        public async Task<List<ProductCardViewModel>> GetAllProducts(SortingViewModel model)
         {
             var products = await this.context.Products
-                .Where(p => p.IsActive == true)
-                .Select(p => new ProductCardViewModel
+                    .Where(p => p.IsActive == true)
+                    .Select(p => new ProductCardViewModel
+                    {
+                        Id = p.Id,
+                        Title = p.Title,
+                        ImageUrl = p.ProductImages.Select(pi => pi.Url).FirstOrDefault(),
+                        //Rating = p.Reviews.Select(r => r.Rating).Average(),
+                        Price = p.Price,
+                        Category = p.Category.Name,
+                        BrandId = p.BrandId
+                    })
+                    .OrderBy(p => p.Price)
+                    .ToListAsync();
+
+            if (model != null)
+            {
+                var sortedProducts = new List<ProductCardViewModel>();
+
+                if (model.BrandsIds.Length > 0)
                 {
-                    Id = p.Id,
-                    Title = p.Title,
-                    ImageUrl = p.ProductImages.Select(pi => pi.Url).FirstOrDefault(),
-                    Rating = p.Reviews.Select(r => r.Rating).Average(),
-                    Price = p.Price,
-                    Category = p.Category.Name
-                })
-                .ToListAsync();
+                    sortedProducts = products
+                        .Where(p => model.BrandsIds.Contains(p.BrandId))
+                        .ToList();
+                }
+
+                if (model.SortingValue == "High - Low Price")
+                {
+                    sortedProducts = products
+                        .OrderByDescending(p => p.Price)
+                        .ToList();
+                }
+                else
+                {
+                    sortedProducts = products
+                        .OrderBy(p => p.Price)
+                        .ToList();
+                }
+
+                return sortedProducts;
+            }
 
             return products;
         }

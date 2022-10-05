@@ -8,7 +8,9 @@
 
         public string ImageUrl { get; set; } = null!;
         
-        public string Category { get; set; } = null!; 
+        public string Category { get; set; } = null!;
+
+        public int BrandId { get; set; }
 
         public double Rating { get; set; }
 

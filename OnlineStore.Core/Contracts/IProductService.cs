@@ -8,6 +8,6 @@ namespace OnlineStore.Core.Contracts
 
         Task<List<ProductCarouselViewModel>> GetCarouselProducts();
 
-        Task<List<ProductCardViewModel>> GetAllProducts();
+        Task<List<ProductCardViewModel>> GetAllProducts(SortingViewModel model = null);
     }
 }

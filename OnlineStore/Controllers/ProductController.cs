@@ -47,7 +47,18 @@ namespace OnlineStore.Controllers
         {
             var products = await this.productService.GetAllProducts();
 
+            ViewBag.Categories = await this.commonService.GetCategories();
+            ViewBag.Brands = await this.commonService.GetBrands();
+
             return View(products);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> All([FromBody] SortingViewModel model)
+        {
+            var products = await this.productService.GetAllProducts(model);
+
+            return Json(products);
         }
     }
 }

@@ -44,7 +44,8 @@ namespace OnlineStore.Core.Services
                    .Select(c => new CategoryViewModel
                    {
                        Id = c.Id,
-                       Name = c.Name
+                       Name = c.Name,
+                       ProductsCount = c.Products.Count()
                    })
                    .ToListAsync();
     }
