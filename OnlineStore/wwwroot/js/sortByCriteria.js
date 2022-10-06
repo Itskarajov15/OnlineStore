@@ -53,20 +53,20 @@ const createProductCard = function (product) {
     colDiv.classList.add('col-lg-4');
     colDiv.classList.add('col-md-6');
     colDiv.classList.add('col-12');
-
+    
     let productDiv = document.createElement('div');
     productDiv.classList.add('single-product');
-
+    
     let imageDiv = document.createElement('div');
     imageDiv.classList.add('product-image');
-
+    
     let imageElement = document.createElement('img');
     imageElement.src = product.imageUrl;
     imageElement.alt = product.title;
-
+    
     let cartDiv = document.createElement('div');
     cartDiv.classList.add('button');
-
+    
     let aTag = document.createElement('a');
     aTag.classList.add('btn');
     let link = '/Product/Details/' + product.id;
@@ -76,7 +76,7 @@ const createProductCard = function (product) {
     iElement.classList.add('lni');
     iElement.classList.add('lni-cart');
 
-    aTag.innerHTML = iElement + 'Add to Cart';
+    aTag.textContent = 'Add to Cart';
 
     cartDiv.appendChild(aTag);
 
@@ -87,16 +87,17 @@ const createProductCard = function (product) {
 
     let productInfoDiv = document.createElement('div');
     productInfoDiv.classList.add('product-info');
-
+    
     let spanElement = document.createElement('span');
     spanElement.classList.add('category');
     spanElement.textContent = product.category;
-
+    
     let h4Element = document.createElement('h4');
     h4Element.classList.add('title');
-
+    
     let aTagTitle = document.createElement('a');
-    aTagTitle.setAttribute('href', link);  
+    aTagTitle.setAttribute('href', link);
+    aTagTitle.textContent = product.title;
 
     h4Element.appendChild(aTagTitle);
 
@@ -112,7 +113,12 @@ const createProductCard = function (product) {
     productInfoDiv.appendChild(h4Element);
     productInfoDiv.appendChild(priceDiv);
 
+    productDiv.appendChild(productInfoDiv);
+
     colDiv.appendChild(productDiv);
+
+    let productsArea = document.getElementById('productsArea');
+    productsArea.appendChild(colDiv);
 }
 
 window.onload = Init();
