@@ -77,18 +77,12 @@ namespace OnlineStore.Core.Services
 
             if (model != null)
             {
-                var sortedProducts = new List<ProductCardViewModel>();
+                var sortedProducts = products;
 
                 if (model.SortingValue == "High - Low Price")
                 {
-                    sortedProducts = products
+                    sortedProducts = sortedProducts
                         .OrderByDescending(p => p.Price)
-                        .ToList();
-                }
-                else
-                {
-                    sortedProducts = products
-                        .OrderBy(p => p.Price)
                         .ToList();
                 }
 
@@ -96,6 +90,13 @@ namespace OnlineStore.Core.Services
                 {
                     sortedProducts = sortedProducts
                         .Where(p => model.BrandsIds.Contains(p.BrandId))
+                        .ToList();
+                }
+
+                if (model.MaxPrice != 0)
+                {
+                    sortedProducts = sortedProducts
+                        .Where(p => p.Price <= model.MaxPrice)
                         .ToList();
                 }
 

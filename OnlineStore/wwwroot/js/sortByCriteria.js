@@ -1,9 +1,11 @@
 ﻿const Init = function () {
     let divContainer = document.getElementById('container');
     let sortingByPrice = document.getElementById('sorting');
+    let priceRangeInputElement = document.getElementById('priceRange');
 
     sortingByPrice.addEventListener('change', getAllSortingMethods);
     divContainer.addEventListener('click', getAllSortingMethods);
+    priceRangeInputElement.addEventListener('click', getAllSortingMethods);
 }
 
 const getAllSortingMethods = function () {
@@ -11,6 +13,12 @@ const getAllSortingMethods = function () {
 
     let divCheckboxes = document.getElementById('brandCheckboxes');
     let checkboxes = divCheckboxes.querySelectorAll('.checkbox');
+    let priceRangeCheckbox = document.getElementById('priceRangeCheckbox');
+
+    if (priceRangeCheckbox.checked) {
+        let priceRangeInput = document.getElementById('priceRange');
+        sortingModel.maxPrice = priceRangeInput.value;
+    }
 
     let brandsIds = [];
 
@@ -72,9 +80,9 @@ const createProductCard = function (product) {
     let link = '/Product/Details/' + product.id;
     aTag.setAttribute('href', link);
 
-    let iElement = document.createElement('i');
-    iElement.classList.add('lni');
-    iElement.classList.add('lni-cart');
+    //let iElement = document.createElement('i');
+    //iElement.classList.add('lni');                     Does not work
+    //iElement.classList.add('lni-cart');
 
     aTag.textContent = 'Add to Cart';
 

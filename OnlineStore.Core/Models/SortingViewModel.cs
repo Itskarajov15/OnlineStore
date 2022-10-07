@@ -5,5 +5,7 @@
         public int[] BrandsIds { get; set; } = null!;
 
         public string SortingValue { get; set; } = null!;
+
+        public decimal MaxPrice { get; set; }
     }
 }
