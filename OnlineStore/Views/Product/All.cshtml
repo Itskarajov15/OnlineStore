@@ -94,7 +94,7 @@
                                             <div class="product-image">
                                                 <img src="@product.ImageUrl" alt="@product.Title">
                                                 <div class="button">
-                                                    <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                                                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id" asp-id class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                                                 </div>
                                             </div>
                                             <div class="product-info">

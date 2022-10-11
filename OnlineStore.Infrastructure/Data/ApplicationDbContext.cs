@@ -26,6 +26,8 @@ namespace OnlineStore.Infrastructure.Data
 
         public DbSet<Category> Categories { get; set; } = null!;
 
+        public DbSet<CartItem> ShoppingCartItems { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
