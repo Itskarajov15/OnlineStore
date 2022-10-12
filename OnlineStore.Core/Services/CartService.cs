@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
-using OnlineStore.Core.Contracts;
+using Microsoft.EntityFrameworkCore;
 using OnlineStore.Core.Extensions;
 using OnlineStore.Core.Models;
 using OnlineStore.Infrastructure.Data;
 
 namespace OnlineStore.Core.Services
 {
-    public class CartService : ICartService
+    public class CartService
     {
         private readonly ApplicationDbContext context;
         private readonly IHttpContextAccessor httpContextAccessor;
@@ -21,7 +21,18 @@ namespace OnlineStore.Core.Services
 
         public async Task<List<CartProductViewModel>> AddToCart(int id)
         {
-            var product = await context.Products.FindAsync(id);
+            var product = await context.Products
+                .Where(p => p.Id == id)
+                .Select(p => new CartProductViewModel
+                {
+                    Id = p.Id,
+                    ImageUrl = p.ProductImages.Select(pi => pi.Url).FirstOrDefault(),
+                    Price = p.Price,
+                    Quantity = p.Quantity,
+                    Title = p.Title
+                })
+                .FirstOrDefaultAsync();
+
             List<CartProductViewModel> cart = new List<CartProductViewModel>();
 
             if (product != null)
@@ -31,7 +42,7 @@ namespace OnlineStore.Core.Services
                     cart.Add(new CartProductViewModel
                     {
                         Id = product.Id,
-                        ImageUrl = product.ProductImages.Select(pi => pi.Url).FirstOrDefault(),
+                        ImageUrl = product.ImageUrl,
                         Price = product.Price,
                         Title = product.Title,
                         Quantity = 1
@@ -52,7 +63,7 @@ namespace OnlineStore.Core.Services
                         cart.Add(new CartProductViewModel
                         {
                             Id = product.Id,
-                            ImageUrl = product.ProductImages.Select(pi => pi.Url).FirstOrDefault(),
+                            ImageUrl = product.ImageUrl,
                             Price = product.Price,
                             Title = product.Title,
                             Quantity = 1

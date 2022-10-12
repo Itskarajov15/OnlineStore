@@ -10,6 +10,7 @@
 }
 
 const showProducts = function (result) {
+    console.log(result);
     if (result == null) {
         let shoppingList = document.getElementById('cartDiv');
         shoppingList.innerHTML = '';
@@ -48,7 +49,7 @@ const createShoppingCartList = function (product) {
                                             </a>
                                             <div class="cart-img-head">
                                                 <a class="cart-img" href="/Product/Details/${product.id}">
-                                                    <img src="http://res.cloudinary.com/dftfu5p0r/image/upload/v1664804561/apple-iphone-14-pro-403335.jpg" alt="Image">
+                                                    <img src="${product.imageUrl}" alt="Image">
                                                 </a>
                                             </div>
 

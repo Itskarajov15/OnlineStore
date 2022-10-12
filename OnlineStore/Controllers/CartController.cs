@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineStore.Core.Contracts;
+using OnlineStore.Core.Services;
 
 namespace OnlineStore.Controllers
 {
     public class CartController : Controller
     {
-        private readonly ICartService cartService;
+        private readonly CartService cartService;
 
         public CartController(
-            ICartService cartService)
+            CartService cartService)
         {
             this.cartService = cartService;
         }
