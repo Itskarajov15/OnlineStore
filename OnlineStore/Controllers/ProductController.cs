@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineStore.Core.Contracts;
 using OnlineStore.Core.Models;
 
 namespace OnlineStore.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly ICommonService commonService;

@@ -1,4 +1,8 @@
-﻿<header class="header navbar-area">
+﻿@using Microsoft.AspNetCore.Identity
+@using OnlineStore.Infrastructure.Data.Identity
+@inject SignInManager<User> SignInManager
+
+<header class="header navbar-area">
     <!-- Start Topbar -->
     <div class="topbar">
         <div class="container">
@@ -29,17 +33,22 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="top-end">
-                        <div class="user">
-                            <i class="lni lni-user"></i>
-                            Hello
-                        </div>
-                        <ul class="user-login"> 
-                            <li>
-                                <a asp-area="Identity" asp-page="/Account/Login">Sign In</a>
-                            </li>
-                            <li>
-                                <a asp-area="Identity" asp-page="/Account/Register">Register</a>
-                            </li>
+                        <ul class="user-login">
+                            @if (!SignInManager.IsSignedIn(User))
+                            {
+                                <li>
+                                    <a asp-controller="Account" asp-action="Login">Sign In</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Account" asp-action="Register">Register</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a asp-controller="Account" asp-action="Logout">Logout</a>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>

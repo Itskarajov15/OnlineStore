@@ -10,7 +10,6 @@
 }
 
 const showProducts = function (result) {
-    console.log(result);
     if (result == null) {
         let shoppingList = document.getElementById('cartDiv');
         shoppingList.innerHTML = '';
