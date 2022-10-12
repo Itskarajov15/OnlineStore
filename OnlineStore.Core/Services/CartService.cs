@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
+using OnlineStore.Core.Contracts;
 using OnlineStore.Core.Extensions;
 using OnlineStore.Core.Models;
 using OnlineStore.Infrastructure.Data;
-using OnlineStore.Infrastructure.Data.Models;
 
 namespace OnlineStore.Core.Services
 {
-    public class CartService
+    public class CartService : ICartService
     {
         private readonly ApplicationDbContext context;
         private readonly IHttpContextAccessor httpContextAccessor;
@@ -28,7 +28,7 @@ namespace OnlineStore.Core.Services
             {
                 if (SessionHelper.GetObjectFromJson<List<CartProductViewModel>>(httpContextAccessor.HttpContext!.Session, "cart") == null)
                 {
-                    cart.Add(new CartProductViewModel 
+                    cart.Add(new CartProductViewModel
                     {
                         Id = product.Id,
                         ImageUrl = product.ProductImages.Select(pi => pi.Url).FirstOrDefault(),
@@ -49,13 +49,13 @@ namespace OnlineStore.Core.Services
                     }
                     else
                     {
-                        cart.Add(new CartProductViewModel 
+                        cart.Add(new CartProductViewModel
                         {
                             Id = product.Id,
                             ImageUrl = product.ProductImages.Select(pi => pi.Url).FirstOrDefault(),
                             Price = product.Price,
                             Title = product.Title,
-                            Quantity = 1 
+                            Quantity = 1
                         });
                     }
 
