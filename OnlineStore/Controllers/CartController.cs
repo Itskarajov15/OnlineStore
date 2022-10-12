@@ -7,16 +7,34 @@ namespace OnlineStore.Controllers
     {
         private readonly CartService cartService;
 
-        public CartController(CartService cartService)
+        public CartController(
+            CartService cartService)
         {
             this.cartService = cartService;
         }
 
-        public async Task<IActionResult> Add(int id)
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] int id)
         {
-            await this.cartService.AddToCart(id);
+            var cart = await this.cartService.AddToCart(id);
 
-            return RedirectToAction("All", "Product");
+            return Json(cart);
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var cart = this.cartService.GetProducts();
+
+            return Json(cart);
+        }
+
+        [HttpPost]
+        public IActionResult Remove([FromBody] int id)
+        {
+            var cart = this.cartService.Remove(id);
+
+            return Json(cart);
         }
     }
 }

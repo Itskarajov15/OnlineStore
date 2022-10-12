@@ -93,8 +93,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <img src="@product.ImageUrl" alt="@product.Title">
-                                                <div class="button">
-                                                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id" asp-id class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                                                <div class="button aButton">
+                                                    <a id="@product.Id" class="btn aTag"><i class="lni lni-cart"></i> Add to Cart</a>
                                                 </div>
                                             </div>
                                             <div class="product-info">
@@ -120,4 +120,5 @@
 
 @section Scripts {
     <script src="~/js/sortByCriteria.js"></script>
+    <script type="module" src="~/js/addProductToCart.js"></script>
 }

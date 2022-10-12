@@ -79,6 +79,8 @@ const createProductCard = function (product) {
     aTag.classList.add('btn');
     let link = '/Product/Details/' + product.id;
     aTag.setAttribute('href', link);
+    aTag.id = product.id;
+    aTag.classList.add('aTag');
 
     //let iElement = document.createElement('i');
     //iElement.classList.add('lni');                     Does not work

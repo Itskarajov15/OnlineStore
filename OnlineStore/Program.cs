@@ -1,9 +1,7 @@
 using CloudinaryDotNet;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineStore.Core.Contracts;
 using OnlineStore.Core.Services;
-using OnlineStore.Data;
 using OnlineStore.Infrastructure.Data;
 using OnlineStore.Infrastructure.Data.Identity;
 
@@ -32,7 +30,7 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.IdleTimeout = TimeSpan.FromMinutes(5);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -64,6 +62,7 @@ app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
 
 app.Run();
