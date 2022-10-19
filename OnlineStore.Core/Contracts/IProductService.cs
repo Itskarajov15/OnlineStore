@@ -9,5 +9,7 @@ namespace OnlineStore.Core.Contracts
         Task<List<ProductCarouselViewModel>> GetCarouselProducts();
 
         Task<List<ProductCardViewModel>> GetAllProducts(SortingViewModel model = null);
+
+        Task<List<ProductCardViewModel>> GetProductsByCategory(int categoryId);
     }
 }

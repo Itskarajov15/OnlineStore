@@ -70,6 +70,7 @@ namespace OnlineStore.Core.Services
                         //Rating = p.Reviews.Select(r => r.Rating).Average(),
                         Price = p.Price,
                         Category = p.Category.Name,
+                        CategoryId = p.CategoryId,
                         BrandId = p.BrandId
                     })
                     .OrderBy(p => p.Price)
@@ -78,6 +79,13 @@ namespace OnlineStore.Core.Services
             if (model != null)
             {
                 var sortedProducts = products;
+
+                if (model.CategoryId != null)
+                {
+                    sortedProducts = sortedProducts
+                        .Where(p => p.CategoryId == model.CategoryId)
+                        .ToList();
+                }
 
                 if (model.SortingValue == "High - Low Price")
                 {
@@ -118,6 +126,27 @@ namespace OnlineStore.Core.Services
                     ImageUrl = p.ProductImages.Select(pi => pi.Url).FirstOrDefault()
                 })
                 .Take(2)
+                .ToListAsync();
+
+            return products;
+        }
+
+        public async Task<List<ProductCardViewModel>> GetProductsByCategory(int categoryId)
+        {
+            var products = await this.context
+                .Products
+                .Where(p => p.CategoryId == categoryId)
+                .Select(p => new ProductCardViewModel
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    ImageUrl = p.ProductImages.Select(pi => pi.Url).FirstOrDefault(),
+                    //Rating = p.Reviews.Select(r => r.Rating).Average(),
+                    Price = p.Price,
+                    Category = p.Category.Name,
+                    BrandId = p.BrandId
+                })
+                .OrderBy(p => p.Price)
                 .ToListAsync();
 
             return products;

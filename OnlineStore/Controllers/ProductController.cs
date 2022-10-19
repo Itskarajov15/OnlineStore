@@ -45,9 +45,18 @@ namespace OnlineStore.Controllers
             return RedirectToAction("All"); ///////////////////////////////Change it when ready
         }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(int categoryId = -1)
         {
-            var products = await this.productService.GetAllProducts();
+            var products = new List<ProductCardViewModel>();
+
+            if (categoryId != -1)
+            {
+                products = await this.productService.GetProductsByCategory(categoryId);
+            }
+            else
+            {
+                products = await this.productService.GetAllProducts();
+            }
 
             ViewBag.Categories = await this.commonService.GetCategories();
             ViewBag.Brands = await this.commonService.GetBrands();

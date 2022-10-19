@@ -22,7 +22,7 @@
                             @foreach (var category in ViewBag.Categories)
                             {
                                 <li>
-                                    <a href="product-grids.html">@category.Name </a><span>(@category.ProductsCount)</span>
+                                    <a asp-controller="Product" asp-action="All" asp-route-categoryId="@category.Id">@category.Name </a><span>(@category.ProductsCount)</span>
                                 </li>
                             }
                         </ul>

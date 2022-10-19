@@ -20,6 +20,12 @@ const getAllSortingMethods = function () {
         sortingModel.maxPrice = priceRangeInput.value;
     }
 
+    let categoryId = getQueryParams();
+
+    if (categoryId != null) {
+        sortingModel.categoryId = categoryId;
+    }
+
     let brandsIds = [];
 
     checkboxes.forEach(x => {
@@ -129,6 +135,14 @@ const createProductCard = function (product) {
 
     let productsArea = document.getElementById('productsArea');
     productsArea.appendChild(colDiv);
+}
+
+const getQueryParams = function () {
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+
+    return params.categoryId;
 }
 
 window.onload = Init();

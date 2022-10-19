@@ -7,5 +7,7 @@
         public string SortingValue { get; set; } = null!;
 
         public decimal MaxPrice { get; set; }
+
+        public int? CategoryId { get; set; }
     }
 }
