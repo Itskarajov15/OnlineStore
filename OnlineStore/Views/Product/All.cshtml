@@ -16,7 +16,7 @@
                             <button type="submit"><i class="lni lni-search-alt"></i></button>
                         </form>
                     </div>
-                    <div class="single-widget">
+                    <div class="single-widget widget">
                         <h3>All Categories</h3>
                         <ul class="list">
                             @foreach (var category in ViewBag.Categories)
@@ -28,7 +28,7 @@
                         </ul>
                     </div>
 
-                    <div class="single-widget range">
+                    <div class="single-widget range widget">
                         <h3>Price Range</h3>
                         <div class="form-check">
                             <input class="form-check-input checkbox" type="checkbox" id="priceRangeCheckbox">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
 
-                    <div class="single-widget condition" id="brandCheckboxes">
+                    <div class="single-widget condition widget" id="brandCheckboxes">
                         <h3>Filter by Brand</h3>
                         <div id="container">
                             @foreach (var brand in ViewBag.Brands)
@@ -73,14 +73,6 @@
                                         <option>Average Rating</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="col-lg-5 col-md-4 col-12">
-                                <nav>
-                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <button class="nav-link active" id="nav-grid-tab" data-bs-toggle="tab" data-bs-target="#nav-grid" type="button" role="tab" aria-controls="nav-grid" aria-selected="true"><i class="lni lni-grid-alt"></i></button>
-                                        <button class="nav-link" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="false"><i class="lni lni-list"></i></button>
-                                    </div>
-                                </nav>
                             </div>
                         </div>
                     </div>
