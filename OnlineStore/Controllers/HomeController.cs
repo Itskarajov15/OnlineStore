@@ -7,7 +7,7 @@ using System.Diagnostics;
 namespace OnlineStore.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService productService;
@@ -17,6 +17,7 @@ namespace OnlineStore.Controllers
             ILogger<HomeController> logger,
             IProductService productService,
             ICommonService commonService)
+            : base(commonService)
         {
             _logger = logger;
             this.productService = productService;
@@ -27,7 +28,7 @@ namespace OnlineStore.Controllers
         {
             var carouselProducts = await this.productService.GetCarouselProducts();
 
-            ViewBag.Categories = await this.commonService.GetAllCategories();
+            ViewBag.CardCategories = await this.commonService.GetAllCategories(); 
 
             return View(carouselProducts);
         }

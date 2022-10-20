@@ -4,7 +4,7 @@ namespace OnlineStore.Core.Contracts
 {
     public interface ICommonService
     {
-        Task<List<CategoryViewModel>> GetCategories();
+        List<CategoryViewModel> GetCategories();
 
         Task<List<BrandViewModel>> GetBrands();
 

@@ -6,13 +6,14 @@ using OnlineStore.Core.Models;
 namespace OnlineStore.Controllers
 {
     [Authorize]
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         private readonly ICommonService commonService;
         private readonly IProductService productService;
 
         public ProductController(ICommonService commonService,
             IProductService productService)
+            : base(commonService)
         {
             this.commonService = commonService;
             this.productService = productService;
@@ -21,7 +22,7 @@ namespace OnlineStore.Controllers
         public async Task<IActionResult> Add()
             => this.View(new AddProductViewModel
             {
-                Categories = await this.commonService.GetCategories(),
+                Categories = this.commonService.GetCategories(),
                 Brands = await this.commonService.GetBrands()
             });
 
@@ -30,7 +31,7 @@ namespace OnlineStore.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.Categories = await this.commonService.GetCategories();
+                model.Categories = this.commonService.GetCategories();
                 model.Brands = await this.commonService.GetBrands();
                 return this.View(model);
             }
@@ -58,7 +59,7 @@ namespace OnlineStore.Controllers
                 products = await this.productService.GetAllProducts();
             }
 
-            ViewBag.Categories = await this.commonService.GetCategories();
+            ViewBag.ModelCategories = this.commonService.GetCategories();
             ViewBag.Brands = await this.commonService.GetBrands();
 
             return View(products);

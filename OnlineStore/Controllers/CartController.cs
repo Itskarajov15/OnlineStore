@@ -1,16 +1,20 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnlineStore.Core.Contracts;
 using OnlineStore.Core.Services;
 
 namespace OnlineStore.Controllers
 {
     [Authorize]
-    public class CartController : Controller
+    public class CartController : BaseController
     {
         private readonly CartService cartService;
+        private readonly ICommonService? commonService;
 
         public CartController(
-            CartService cartService)
+            CartService cartService,
+            ICommonService commonService)
+            :base(commonService)
         {
             this.cartService = cartService;
         }
@@ -37,6 +41,14 @@ namespace OnlineStore.Controllers
             var cart = this.cartService.Remove(id);
 
             return Json(cart);
+        }
+
+        [HttpGet]
+        public IActionResult ShowCart()
+        {
+            var cart = this.cartService.GetProducts();
+
+            return View(cart);
         }
     }
 }

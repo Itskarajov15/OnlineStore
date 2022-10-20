@@ -38,8 +38,8 @@ namespace OnlineStore.Core.Services
                    })
                    .ToListAsync();
 
-        public async Task<List<CategoryViewModel>> GetCategories()
-            => await this.context
+        public List<CategoryViewModel> GetCategories()
+            => this.context
                    .Categories
                    .Select(c => new CategoryViewModel
                    {
@@ -47,6 +47,6 @@ namespace OnlineStore.Core.Services
                        Name = c.Name,
                        ProductsCount = c.Products.Count()
                    })
-                   .ToListAsync();
+                   .ToList();
     }
 }

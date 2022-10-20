@@ -19,7 +19,7 @@
                     <div class="single-widget widget">
                         <h3>All Categories</h3>
                         <ul class="list">
-                            @foreach (var category in ViewBag.Categories)
+                            @foreach (var category in ViewBag.ModelCategories)
                             {
                                 <li>
                                     <a asp-controller="Product" asp-action="All" asp-route-categoryId="@category.Id">@category.Name </a><span>(@category.ProductsCount)</span>

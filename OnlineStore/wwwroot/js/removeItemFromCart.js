@@ -1,8 +1,8 @@
 ﻿import { showProducts } from './showProductsInCart.js';
 
 const eventHandler = function () {
-    let shoppingListItem = document.getElementById('shopping-item');
-    shoppingListItem.addEventListener('click', removeProduct);
+    let cartDiv = document.getElementById('cartDiv');
+    cartDiv.addEventListener('click', removeProduct);
 }
 
 const removeProduct = async function (e) {
