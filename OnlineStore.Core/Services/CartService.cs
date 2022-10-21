@@ -89,6 +89,18 @@ namespace OnlineStore.Core.Services
             return cart;
         }
 
+        public CartViewModel ShowProductsInCart()
+        {
+            var cartModel = new CartViewModel()
+            {
+                Products = GetProducts()
+            };
+
+            cartModel.TotalPrice = cartModel.Products.Sum(p => p.Price * p.Quantity);
+
+            return cartModel;
+        }
+
         public List<CartProductViewModel> Remove(int id)
         {
             var cart = SessionHelper.GetObjectFromJson<List<CartProductViewModel>>(httpContextAccessor.HttpContext.Session, "cart");

@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using OnlineStore.Infrastructure.Data.Identity
+@inject SignInManager<User> SignInManager
+
+<div class="topbar">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="top-left">
+                    <ul class="menu-top-link">
+                        <li>
+                            <div class="select-position">
+                                <select id="select5">
+                                    <option value="0" selected>English</option>
+                                    <option value="2">Bulgarian</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="top-middle">
+                    <ul class="useful-links">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        }
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">About Us</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li>
+                        <li><a asp-area="" asp-controller="Product" asp-action="Add">Add Product</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="top-end">
+                    <ul class="user-login">
+                        @if (!SignInManager.IsSignedIn(User))
+                        {
+                            <li>
+                                <a asp-controller="Account" asp-action="Login">Sign In</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

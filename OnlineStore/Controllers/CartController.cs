@@ -46,7 +46,7 @@ namespace OnlineStore.Controllers
         [HttpGet]
         public IActionResult ShowCart()
         {
-            var cart = this.cartService.GetProducts();
+            var cart = this.cartService.ShowProductsInCart();
 
             return View(cart);
         }

@@ -3,12 +3,10 @@
     ViewData["Title"] = "Login";
 }
 
-<h1>@ViewData["Title"]</h1>
-
 <div class="row d-flex justify-content-center">
     <div class="col-md-4">
         <form id="loginForm" method="post">
-            <h2>Login</h2>
+            <h2 class="text-center mt-30 mb-30">Login</h2>
             <hr />
             <input type="hidden" asp-for="ReturnUrl" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
