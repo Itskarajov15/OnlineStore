@@ -9,6 +9,7 @@
                         <table class="table table-head-fixed text-nowrap">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Product Name</th>
                                     <th>Quantity</th>
                                     <th>Subtotal</th>
@@ -23,7 +24,7 @@
                                         <td>@product.Title</td>
                                         <td>@product.Quantity</td>
                                         <td>@(product.Price * product.Quantity) лв.</td>
-                                        <td><a class="remove-item" href="javascript:void(0)"><i class="lni lni-close"></i></a></td>
+                                        <td><a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-productId="@product.Id" class="remove-item"><i class="lni lni-close"></i></a></td>
                                     </tr>
                                 }
                             </tbody>
@@ -37,13 +38,13 @@
 
                 <div class="total-amount">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-12">
+                        <div class="col-lg-4 col-md-6 col-12 mt-15">
                             <div class="right">
                                 <ul>
                                     <li>Shipping<span>Free</span></li>
-                                    <li class="last">Total<span>@Model.TotalPrice лв.</span></li>
+                                    <li class="last">Total <span>@Model.TotalPrice.ToString("F2") лв.</span></li>
                                 </ul>
-                                <div class="button">
+                                <div class="button mt-15">
                                     <a href="checkout.html" class="btn">Checkout</a>
                                     <a asp-controller="Product" asp-action="All" class="btn btn-alt">Continue shopping</a>
                                 </div>

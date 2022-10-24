@@ -35,6 +35,13 @@ namespace OnlineStore.Controllers
             return Json(cart);
         }
 
+        public IActionResult RemoveFromCart(int productId)
+        {
+            var cart = this.cartService.Remove(productId);
+
+            return RedirectToAction(nameof(ShowCart));
+        }
+
         [HttpPost]
         public IActionResult Remove([FromBody] int id)
         {
