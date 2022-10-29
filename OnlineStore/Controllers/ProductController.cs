@@ -22,7 +22,7 @@ namespace OnlineStore.Controllers
         public async Task<IActionResult> Add()
             => this.View(new AddProductViewModel
             {
-                Categories = this.commonService.GetCategories(),
+                //Categories = this.commonService.GetCategories(),
                 Brands = await this.commonService.GetBrands()
             });
 

@@ -37,6 +37,7 @@ builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 builder.Services.AddScoped<ICommonService, CommonService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<CartService, CartService>();
+builder.Services.AddScoped<PaypalService, PaypalService>();
 
 builder.Services.AddDistributedMemoryCache();
 
@@ -52,6 +53,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
 }
 else

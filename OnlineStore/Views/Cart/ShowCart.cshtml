@@ -35,7 +35,6 @@
         </div>
         <div class="row">
             <div class="col-12">
-
                 <div class="total-amount">
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-12 mt-15">
@@ -45,14 +44,13 @@
                                     <li class="last">Total <span>@Model.TotalPrice.ToString("F2") лв.</span></li>
                                 </ul>
                                 <div class="button mt-15">
-                                    <a href="checkout.html" class="btn">Checkout</a>
+                                    <a asp-controller="Paypal" asp-action="CreatePayment" class="btn">Checkout</a>
                                     <a asp-controller="Product" asp-action="All" class="btn btn-alt">Continue shopping</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
